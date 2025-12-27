@@ -6,9 +6,10 @@ import MaintenanceRequestPage from './pages/MaintenanceRequest';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Calendar from './pages/Calendar';
+import EquipmentPage from './pages/Equipment';
 
-// 1. IMPORT THE NEW PAGE
-import EquipmentPage from './pages/Equipment'; 
+// 1. IMPORT TEAMS PAGE
+import TeamsPage from './pages/Teams'; 
 
 const App = () => {
   return (
@@ -21,12 +22,12 @@ const App = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/requests/new" element={<MaintenanceRequestPage />} />
           <Route path="/calendar" element={<Calendar />} />
-          
-          {/* 2. UPDATE THIS LINE TO USE THE REAL COMPONENT */}
           <Route path="/equipment" element={<EquipmentPage />} />
           
+          {/* 2. UPDATE THIS LINE */}
+          <Route path="/teams" element={<TeamsPage />} />
+          
           <Route path="/reporting" element={<div>Reporting Page (Coming Soon)</div>} />
-          <Route path="/teams" element={<div>Teams Page (Coming Soon)</div>} />
         </Route>
       </Routes>
     </Router>
