@@ -1,0 +1,35 @@
+.navbar {
+  background: var(--nav);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.brand-gear {
+  color: #2563eb; /* blue */
+}
+
+.brand-guard {
+  color: #374151; /* dark grey */
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar-links a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.navbar-links a.active {
+  border-bottom: 2px solid #2563eb;
+}

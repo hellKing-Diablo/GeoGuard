@@ -1,0 +1,7 @@
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
