@@ -26,7 +26,7 @@ const Login = () => {
       
       // 2. Redirect
       console.log("3. Redirecting to Dashboard...");
-      navigate('/'); 
+      navigate('/',{ replace: true }); 
       
     } catch (err: any) {
       console.error("❌ Login Error:", err.code, err.message);

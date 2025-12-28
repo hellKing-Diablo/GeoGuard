@@ -1,27 +1,34 @@
-import React, { createContext, useContext, useState } from 'react';
-import { User } from 'firebase/auth';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '../firebase';
 
 interface AuthContextType {
-  currentUser: any; // Using 'any' for quick mock
+  currentUser: User | null;
   loading: boolean;
 }
 
-// MOCK USER DATA
-const MOCK_USER = {
-  uid: 'test-admin-123',
-  displayName: 'Test Admin',
-  email: 'admin@gearguard.com'
-};
-
-const AuthContext = createContext<AuthContextType>({ currentUser: MOCK_USER, loading: false });
+const AuthContext = createContext<AuthContextType>({ currentUser: null, loading: true });
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Always return the mock user, no loading
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // This listener runs automatically whenever Firebase detects a login/logout
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Auth State Changed:", user ? "User Logged In" : "No User");
+      setCurrentUser(user);
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ currentUser: MOCK_USER, loading: false }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser, loading }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
